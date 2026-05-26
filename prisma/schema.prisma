@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Cars {
+  id          Int          @id @default(autoincrement())
+  carName     String
+  carDesc     String
+  carMileage  String
+  carCompany  String
+  fuleType    String
+  prizeperday String
+  image1      String
+  image2      String
+  image3      String
+  created_at  DateTime     @default(now())
+  updated_at  DateTime     @updatedAt
+  carbooking  CarBooking[]
+
+  @@map("cars")
+}
+
+model CarBooking {
+  id            Int      @id @default(autoincrement())
+  userId        String
+  carId         Int
+  bookingNumber String
+  startDate     DateTime
+  endDate       DateTime
+  totalPrize    String
+  created_at    DateTime @default(now())
+  status        Status  @default(pending)
+  car           Cars     @relation(fields: [carId], references: [id])
+}
+
+enum Status {
+  pending
+  approved
+  reject
+}
