@@ -3,7 +3,7 @@ import { Field, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Textarea } from "@/components/ui/textarea"
 import { cn } from '@/lib/utils'
-import React from 'react'
+import React, { useActionState } from 'react'
 import { addCarAction } from '../addcarServerAction/add-car-server-action'
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
@@ -11,6 +11,7 @@ import SubmitButton from '@/components/Buttons/submit-button'
 import { toast } from 'sonner'
 
 const AddCar = () => {
+  const [state, formAction] = useActionState(addCarAction, null)
 
   return (
     <Layout>
@@ -26,7 +27,7 @@ const AddCar = () => {
           </p>
         </div>
 
-        <form action={addCarAction} className='mt-10 w-full'>
+        <form action={formAction} className='mt-10 w-full'>
 
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 w-full'>
             {/* Car Name */}
