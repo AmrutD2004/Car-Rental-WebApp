@@ -16,6 +16,7 @@ const EditCar = ({ car, onClose }: props) => {
 
     const handleSubmit = async (formData: FormData) => {
         const data = await editCarAction(car.id, formData)
+        if(!data) return
         if (data?.success) {
             toast(`Edit Successfull ${car.carName}`)
             setTimeout(() => {
