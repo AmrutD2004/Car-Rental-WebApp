@@ -8,7 +8,7 @@ import React, { useState } from 'react'
 import { toast } from 'sonner'
 
 type props = {
-    car: null,
+    car: number,
     onClose: () => void
 }
 const DeleteConfirm = ({ car, onClose }: props) => {
