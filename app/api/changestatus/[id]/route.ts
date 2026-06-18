@@ -6,7 +6,9 @@ export async function PUT(req: NextRequest, {params} : {params : Promise<{id : s
     const {id} = await params
     const {status} = await req.json()
     const user = await User()
-
+    if (!('publicMetadata' in user)) {
+    return 
+}
     const metadata = user.publicMetadata;
     const isAdmin = metadata.isAdmin ?? false
     if (!isAdmin) {
